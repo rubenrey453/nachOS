@@ -29,6 +29,7 @@
 #define SC_Close	8
 #define SC_Fork		9
 #define SC_Yield	10
+#define SC_PutChar	11
 
 #ifdef IN_USER_MODE
 
@@ -127,6 +128,9 @@ void Fork (void (*func) ());
  * or not. 
  */
 void Yield ();
+
+/*a user function like puchchar(3) in unix terms. Enter the command man 3 putchar to check*/
+void function PutChar(char c);
 
 #endif // IN_USER_MODE
 

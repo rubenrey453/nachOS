@@ -113,12 +113,16 @@ void ExceptionHandler(ExceptionType which) {
 
 //				printf("in the sc getchar fution");
 
-				int ch1=machine->ReadRegister(4);
-				char b;
-				b = synchConsole->SynchGetChar();
-				machine->WriteMem(ch1,sizeof(int),b);
+				char b = synchConsole->SynchGetChar();
+				machine->WriteRegister(2,b);
 				break;
 			}
+			case SC_PutString: {
+							int ch=machine->ReadRegister(4);
+							char c=(char)ch;
+							synchConsole->SynchPutChar(c);
+							break;
+						}
 			default: {
 				printf("Unexpected user mode exception %d %d\n", which, type);
 				ASSERT(FALSE);

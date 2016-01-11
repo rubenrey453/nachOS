@@ -33,6 +33,7 @@
 #ifdef	CHANGED
 #define SC_PutChar	11
 #define SC_GetChar	12
+#define SC_PutString 13
 #endif
 
 #ifdef IN_USER_MODE
@@ -137,6 +138,7 @@ void Yield ();
 #ifdef	CHANGED
 void PutChar(char c);
 char GetChar();
+void PutString (const char s[]);
 #endif //changed
 #endif // IN_USER_MODE
 

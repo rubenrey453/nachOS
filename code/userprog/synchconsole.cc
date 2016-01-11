@@ -48,8 +48,7 @@ char SynchConsole::SynchGetChar()
 //char SynchConsole::SynchGetChar(int *ch)
 {
 	readAvail->P ();        // wait for character to arrive
-	character = console->GetChar();
-	return character;
+	return console->GetChar();
 }
 void SynchConsole::SynchPutString(const char s[])
 {

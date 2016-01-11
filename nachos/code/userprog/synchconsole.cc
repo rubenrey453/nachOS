@@ -3,45 +3,52 @@
 #include "system.h"
 #include "synchconsole.h"
 #include "synch.h"
+
+
 static Semaphore *readAvail;
 static Semaphore *writeDone;
+
 static void ReadAvail(int arg) { readAvail->V(); }
 static void WriteDone(int arg) { writeDone->V(); }
 
 SynchConsole::SynchConsole(char *readFile, char *writeFile)
 {
-  readAvail = new Semaphore("read avail", 0);
-  writeDone = new Semaphore("write done", 0);
-  console = new Console (readFile, writeFile, ReadAvail, WriteDone, 0);
+	readAvail = new Semaphore("read avail", 0);
+	writeDone = new Semaphore("write done", 0);
+	console = new Console (readFile, writeFile, ReadAvail, WriteDone, 0);
 }
 SynchConsole::~SynchConsole()
 {
-  delete console;
-  delete writeDone;
-  delete readAvail;
+	delete console;
+	delete writeDone;
+	delete readAvail;
 }
-void SynchConsole::SynchPutChar(const char character)
+void SynchConsole::SynchPutChar(const char ch)
 {
+	console->PutChar(ch);
+	writeDone->P();
+/*
 	if(character == 'c'){
-		    console->PutChar('<');
-		    writeDone->P();
-		    console->PutChar(character);
-		    writeDone->P();
-		    console->PutChar('>');
-		    writeDone->P();
-		}
-		else{
-	      	console->PutChar (character);	// echo it!
-	      	writeDone->P ();	// wait for write to finish
-		}
-	 	    if (character == EOF)
-	     	        return;		// if q, quit
-
+		console->PutChar('<');
+		writeDone->P();
+		console->PutChar(character);
+		writeDone->P();
+		console->PutChar('>');
+		writeDone->P();
+	}
+	else{
+		console->PutChar (character);	// echo it!
+		writeDone->P ();	// wait for write to finish
+	}
+	if (character == EOF)
+		return;		// if EOF, quit
+*/
 }
 char SynchConsole::SynchGetChar()
 {
 	readAvail->P ();        // wait for character to arrive
-        ch = console->GetChar();
+	character = console->GetChar();
+	return character;
 }
 void SynchConsole::SynchPutString(const char s[])
 {
@@ -65,4 +72,4 @@ void SynchConsole::SynchGetString(char *s, int n)
 		i++;
 	}
 }
-#endif // CHANGED
+#endif // CHANGE

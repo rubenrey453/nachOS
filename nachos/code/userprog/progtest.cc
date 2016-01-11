@@ -13,6 +13,10 @@
 #include "console.h"
 #include "addrspace.h"
 #include "synch.h"
+#include "synchconsole.h"
+
+// Now using SynchConsoleTest instead of ConsoleTest
+//#define CHANGE
 
 //----------------------------------------------------------------------
 // StartProcess
@@ -45,6 +49,7 @@ StartProcess (char *filename)
     // by doing the syscall "exit"
 }
 
+#ifndef CHANGED
 // Data structures needed for the console test.  Threads making
 // I/O requests wait on a Semaphore to delay until the I/O completes.
 
@@ -84,22 +89,43 @@ ConsoleTest (char *in, char *out)
     writeDone = new Semaphore ("write done", 0);
 
     for (;;)
-      {
-	  readAvail->P ();	// wait for character to arrive
-	  ch = console->GetChar ();
-		if(ch == 'c'){
-		    console->PutChar('<');
-		    writeDone->P();
-		    console->PutChar(ch);
-		    writeDone->P();
-		    console->PutChar('>');
-		    writeDone->P();
+	{
+		readAvail->P ();	// wait for character to arrive
+		ch = console->GetChar ();
+		if(ch == 'c')
+		{
+			console->PutChar('<');
+			writeDone->P();
+			console->PutChar(ch);
+			writeDone->P();
+			console->PutChar('>');
+			writeDone->P();
 		}
 		else{
-	      	console->PutChar (ch);	// echo it!
-	      	writeDone->P ();	// wait for write to finish
+			console->PutChar (ch);	// echo it!
+			writeDone->P ();	// wait for write to finish
 		}
 	 	    if (ch == EOF)
 	     	        return;		// if q, quit
-      }
+	}
 }
+#endif
+
+#ifdef CHANGED
+void
+SynchConsoleTest (char *in, char *out)
+{
+	char ch;
+	
+	if(in!=NULL && out!=NULL)
+	{
+		delete synchConsole;
+		synchConsole=new SynchConsole(in,out);
+	}
+	
+	//SynchConsole *synchconsole = new SynchConsole(in, out);
+	while ((ch = synchConsole->SynchGetChar()) != EOF)
+		synchConsole->SynchPutChar(ch);
+	fprintf(stderr, "Solaris: EOF detected in SynchConsole!\n");
+}
+#endif //CHANGED

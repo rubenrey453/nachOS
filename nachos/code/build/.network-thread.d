@@ -6,8 +6,9 @@ network-thread.o: ../threads/thread.cc ../threads/copyright.h \
  ../threads/switch.h ../threads/synch.h ../threads/list.h \
  ../threads/system.h ../threads/scheduler.h ../machine/interrupt.h \
  ../threads/list.h ../machine/stats.h ../machine/timer.h \
- ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h \
- ../network/post.h ../machine/network.h ../threads/synchlist.h
+ ../userprog/synchconsole.h ../machine/console.h ../filesys/synchdisk.h \
+ ../machine/disk.h ../threads/synch.h ../network/post.h \
+ ../machine/network.h ../threads/synchlist.h
  ../threads/thread.cc ../threads/copyright.h \
  ../threads/thread.h ../threads/utility.h ../threads/bool.h \
  ../machine/sysdep.h ../threads/copyright.h ../machine/machine.h \
@@ -16,5 +17,6 @@ network-thread.o: ../threads/thread.cc ../threads/copyright.h \
  ../threads/switch.h ../threads/synch.h ../threads/list.h \
  ../threads/system.h ../threads/scheduler.h ../machine/interrupt.h \
  ../threads/list.h ../machine/stats.h ../machine/timer.h \
- ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h \
- ../network/post.h ../machine/network.h ../threads/synchlist.h:
+ ../userprog/synchconsole.h ../machine/console.h ../filesys/synchdisk.h \
+ ../machine/disk.h ../threads/synch.h ../network/post.h \
+ ../machine/network.h ../threads/synchlist.h:

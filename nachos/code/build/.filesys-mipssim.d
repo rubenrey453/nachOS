@@ -6,7 +6,8 @@ filesys-mipssim.o: ../machine/mipssim.cc ../threads/copyright.h \
  ../userprog/addrspace.h ../filesys/filesys.h ../filesys/openfile.h \
  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
  ../threads/list.h ../machine/stats.h ../machine/timer.h \
- ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h
+ ../userprog/synchconsole.h ../machine/console.h ../filesys/synchdisk.h \
+ ../machine/disk.h ../threads/synch.h
  ../machine/mipssim.cc ../threads/copyright.h \
  ../machine/machine.h ../threads/utility.h ../threads/copyright.h \
  ../threads/bool.h ../machine/sysdep.h ../machine/translate.h \
@@ -15,4 +16,5 @@ filesys-mipssim.o: ../machine/mipssim.cc ../threads/copyright.h \
  ../userprog/addrspace.h ../filesys/filesys.h ../filesys/openfile.h \
  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
  ../threads/list.h ../machine/stats.h ../machine/timer.h \
- ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h:
+ ../userprog/synchconsole.h ../machine/console.h ../filesys/synchdisk.h \
+ ../machine/disk.h ../threads/synch.h:

@@ -25,6 +25,7 @@
 #include "system.h"
 #include "syscall.h"
 
+
 //----------------------------------------------------------------------
 // UpdatePC : Increments the Program Counter register in order to resume
 // the user program immediately after the "syscall" instruction.
@@ -65,35 +66,46 @@ UpdatePC ()
 //----------------------------------------------------------------------
 
 void
-ExceptionHandler (ExceptionType which)
+ExceptionHandler(ExceptionType which)
 {
-    int type = machine->ReadRegister (2);
-
-    #ifndef CHANGED // Noter le if*n*def
+	int type = machine->ReadRegister(2);
+	#ifndef CHANGED // Noter le if*n*def
+			
 	if ((which == SyscallException) && (type == SC_Halt)) {
-		DEBUG(’a’, "Shutdown, initiated by user program.\n");
+			
+		DEBUG('a', "Shutdown, initiated by user program.\n");
 		interrupt->Halt();
-	} else {
+			
+	} 
+	else {
 		printf("Unexpected user mode exception %d %d\n", which, type);
 		ASSERT(FALSE);
 	}
-    #else // CHANGED
+		
+	#else // CHANGED
 	if (which == SyscallException) {
 		switch (type) {
+
 			case SC_Halt: {
-				DEBUG(’a’, "Shutdown, initiated by user program.\n");
-				interrupt->Halt();
-				break;
+			DEBUG('a', "Shutdown, initiated by user program.\n");
+			interrupt->Halt();
+			break;
 			}
 			case SC_PutChar: {
-			
+				int ch=machine->ReadRegister(4);
+				char c=(char)ch;
+				synchConsole->SynchPutChar(c);
+				break;
 			}
 			default: {
 				printf("Unexpected user mode exception %d %d\n", which, type);
 				ASSERT(FALSE);
 			}
-		}
-		updatePC();
-	}
-    }
-    #endif 	//CHANGED
+		}//switch
+	}//if
+	#endif // CHANGED
+    // LB: Do not forget to increment the pc before returning!
+    UpdatePC ();
+}
+
+

@@ -34,6 +34,9 @@
 #define SC_PutChar	11
 #define SC_GetChar	12
 #define SC_PutString 13
+#define SC_GetString 14
+#define SC_SynchPutInt 15
+#define SC_SynchGetInt 16
 #endif
 
 #ifdef IN_USER_MODE
@@ -139,6 +142,9 @@ void Yield ();
 void PutChar(char c);
 char GetChar();
 void PutString (const char s[]);
+void GetString (char *s, int n);
+void SynchPutInt(int n);
+void SynchGetInt(int *n);
 #endif //changed
 #endif // IN_USER_MODE
 

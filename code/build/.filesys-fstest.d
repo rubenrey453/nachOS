@@ -6,7 +6,9 @@ filesys-fstest.o: ../filesys/fstest.cc ../threads/copyright.h \
  ../userprog/addrspace.h ../filesys/filesys.h ../threads/scheduler.h \
  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
  ../machine/stats.h ../machine/timer.h ../userprog/synchconsole.h \
- ../machine/console.h ../filesys/synchdisk.h ../machine/disk.h \
+ ../machine/console.h ../userprog/../threads/synch.h \
+ ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
+ ../userprog/../threads/list.h ../filesys/synchdisk.h ../machine/disk.h \
  ../threads/synch.h ../threads/thread.h
  ../filesys/fstest.cc ../threads/copyright.h \
  ../threads/utility.h ../threads/copyright.h ../threads/bool.h \
@@ -16,5 +18,7 @@ filesys-fstest.o: ../filesys/fstest.cc ../threads/copyright.h \
  ../userprog/addrspace.h ../filesys/filesys.h ../threads/scheduler.h \
  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
  ../machine/stats.h ../machine/timer.h ../userprog/synchconsole.h \
- ../machine/console.h ../filesys/synchdisk.h ../machine/disk.h \
+ ../machine/console.h ../userprog/../threads/synch.h \
+ ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
+ ../userprog/../threads/list.h ../filesys/synchdisk.h ../machine/disk.h \
  ../threads/synch.h ../threads/thread.h:

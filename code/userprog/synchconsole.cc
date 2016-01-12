@@ -27,39 +27,21 @@ void SynchConsole::SynchPutChar(const char ch)
 {
 	console->PutChar(ch);
 	writeDone->P();
-/*
-	if(character == 'c'){
-		console->PutChar('<');
-		writeDone->P();
-		console->PutChar(character);
-		writeDone->P();
-		console->PutChar('>');
-		writeDone->P();
-	}
-	else{
-		console->PutChar (character);	// echo it!
-		writeDone->P ();	// wait for write to finish
-	}
-	if (character == EOF)
-		return;		// if EOF, quit
-*/
 }
 char SynchConsole::SynchGetChar()
-//char SynchConsole::SynchGetChar(int *ch)
 {
 	readAvail->P ();        // wait for character to arrive
 	return console->GetChar();
 }
 void SynchConsole::SynchPutString(const char s[])
 {
-	int i;
-	i=0;
+	int i=0;
 	while(s[i]!='\0')
 	{
 		this->SynchPutChar(s[i]);
 		i++;
 	}
-	this->SynchPutChar('\0');
+	//this->SynchPutChar('\0');
 }
 void SynchConsole::SynchGetString(char *s, int n)
 {
@@ -71,5 +53,34 @@ void SynchConsole::SynchGetString(char *s, int n)
 		s[i] = console->GetChar();
 		i++;
 	}
+}
+
+void SynchConsole::SynchPutInt(int n)
+{
+	buffer = new char[MAX_BUFFER_SIZE];
+	snprintf(buffer, MAX_BUFFER_SIZE, "%d", n);
+	
+	for(int i=0; i<MAX_BUFFER_SIZE-1 && buffer[i]!='\0'; i++){		//"MAX_BUFFER_SIZE - 1" for the
+		this->SynchPutChar(buffer[i]);								//reason of last character to be
+	}																//'\0'
+	delete []buffer;			//to destry the buffer after it has been written
+}
+
+void SynchConsole::SynchGetInt(int *n)
+{
+	buffer = new char[MAX_BUFFER_SIZE];
+	int i;
+	char input;
+	for(i=0; i<MAX_BUFFER_SIZE-1; i++)
+	{
+		input = this->SynchGetChar();
+		if(input != '\n')
+			buffer[i] = input;
+		else
+			break;
+	}
+	buffer[i] = '\0';
+	sscanf(buffer, "%d", n);
+	delete []buffer;
 }
 #endif // CHANGE

@@ -6,7 +6,7 @@ userprog-synch.o: ../threads/synch.cc ../threads/copyright.h \
  ../filesys/openfile.h ../threads/list.h ../threads/system.h \
  ../threads/scheduler.h ../machine/interrupt.h ../threads/list.h \
  ../machine/stats.h ../machine/timer.h ../userprog/synchconsole.h \
- ../machine/console.h
+ ../machine/console.h ../userprog/../threads/synch.h
  ../threads/synch.cc ../threads/copyright.h \
  ../threads/synch.h ../threads/thread.h ../threads/utility.h \
  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
@@ -15,4 +15,4 @@ userprog-synch.o: ../threads/synch.cc ../threads/copyright.h \
  ../filesys/openfile.h ../threads/list.h ../threads/system.h \
  ../threads/scheduler.h ../machine/interrupt.h ../threads/list.h \
  ../machine/stats.h ../machine/timer.h ../userprog/synchconsole.h \
- ../machine/console.h:
+ ../machine/console.h ../userprog/../threads/synch.h:

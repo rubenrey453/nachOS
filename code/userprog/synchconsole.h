@@ -5,7 +5,9 @@
 #include "copyright.h"
 #include "utility.h"
 #include "console.h"
+#include "../threads/synch.h"
 
+#define MAX_BUFFER_SIZE 10
 
 
 class SynchConsole {
@@ -17,10 +19,14 @@ class SynchConsole {
 		char SynchGetChar();                // Unix getchar(3S)
 		//char SynchGetChar(int * x);
 		void SynchPutString(const char *s); // Unix puts(3S)
-		void SynchGetString(char *s, int n);       // Unix fgets(3S)
+		void SynchGetString(char *s, int n);
+		void SynchPutInt(int n);
+		void SynchGetInt(int *n);
 	private:
 		Console *console;
 		char character;
+		char *buffer;
+		Semaphore *bufferSemaphore;
 };
 
 #endif // SYNCHCONSOLE_H

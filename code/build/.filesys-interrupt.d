@@ -6,7 +6,9 @@ filesys-interrupt.o: ../machine/interrupt.cc ../threads/copyright.h \
  ../userprog/addrspace.h ../filesys/filesys.h ../filesys/openfile.h \
  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
  ../machine/stats.h ../machine/timer.h ../userprog/synchconsole.h \
- ../machine/console.h ../filesys/synchdisk.h ../machine/disk.h \
+ ../machine/console.h ../userprog/../threads/synch.h \
+ ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
+ ../userprog/../threads/list.h ../filesys/synchdisk.h ../machine/disk.h \
  ../threads/synch.h
  ../machine/interrupt.cc ../threads/copyright.h \
  ../machine/interrupt.h ../threads/list.h ../threads/copyright.h \
@@ -16,5 +18,7 @@ filesys-interrupt.o: ../machine/interrupt.cc ../threads/copyright.h \
  ../userprog/addrspace.h ../filesys/filesys.h ../filesys/openfile.h \
  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
  ../machine/stats.h ../machine/timer.h ../userprog/synchconsole.h \
- ../machine/console.h ../filesys/synchdisk.h ../machine/disk.h \
+ ../machine/console.h ../userprog/../threads/synch.h \
+ ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
+ ../userprog/../threads/list.h ../filesys/synchdisk.h ../machine/disk.h \
  ../threads/synch.h:

@@ -53,7 +53,6 @@
 #include "utility.h"
 #include "system.h"
 
-
 // External functions used by this file
 
 extern void ThreadTest (void), Copy (const char *unixFile, const char *nachosFile);
@@ -100,7 +99,7 @@ main (int argc, char **argv)
 		StartProcess (*(argv + 1));
 		argCount = 2;
 	    }
-		#ifndef CHANGED
+		/* #ifndef CHANGED
 	  	else if (!strcmp (*argv, "-c"))
 		{			// test the console
 			if (argc == 1)
@@ -115,7 +114,7 @@ main (int argc, char **argv)
 			// Nachos will loop forever waiting 
 			// for console input
 		}
-		#endif
+		#endif */
 #ifdef CHANGED
 		else if (!strcmp (*argv, "-sc"))
 	    {			// test the console
@@ -154,16 +153,49 @@ main (int argc, char **argv)
 	    }
 	  else if (!strcmp (*argv, "-l"))
 	    {			// list Nachos directory
-		fileSystem->List ();
+		fileSystem->List (); 
+		//interrupt->Halt ();
 	    }
 	  else if (!strcmp (*argv, "-D"))
 	    {			// print entire filesystem
-		fileSystem->Print ();
+		fileSystem->Print ();	
+		//interrupt->Halt ();
 	    }
 	  else if (!strcmp (*argv, "-t"))
 	    {			// performance test
 		PerformanceTest ();
 	    }
+	#ifdef CHANGED
+            else if (!strcmp (*argv, "-crd"))
+	    {			// Create Nachos directory		 
+		ASSERT (argc > 1);
+		fileSystem->CreateDirectory (*(argv + 1));
+		argCount = 2;
+		//interrupt->Halt ();
+	    }
+ 		else if (!strcmp (*argv, "-rd"))
+	    {			// Create Nachos directory		 
+		ASSERT (argc > 1);
+		fileSystem->RemoveDirectory (*(argv + 1));
+		argCount = 2;
+		//interrupt->Halt ();
+	    }
+	else if (!strcmp (*argv, "-md"))
+	    {			// Create Nachos directory		 
+		ASSERT (argc > 1);
+		fileSystem->RoutePath (*(argv + 1));
+		argCount = 2;
+		//interrupt->Halt ();
+	    }
+	else if (!strcmp (*argv, "-md2"))
+	    {			// Create Nachos directory		 
+		//ASSERT (argc > 1);
+		fileSystem->MoveDir (*(argv + 1));
+		argCount = 2;
+		//interrupt->Halt ();
+	    }
+	#endif
+
 #endif // FILESYS
 #ifdef NETWORK
 	  if (!strcmp (*argv, "-o"))
